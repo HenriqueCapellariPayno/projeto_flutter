@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, 'cadastro');
           },
-          child: Text('entrr'),
+          child: Text('entrar'),
         ),
       ),
     );
