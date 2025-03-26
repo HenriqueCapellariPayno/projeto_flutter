@@ -4,6 +4,10 @@ class CadastroController extends ChangeNotifier{
 
   final txtNome = TextEditingController();
   final txtEmail = TextEditingController();
+  final txtCpf = TextEditingController();
+  final txtTelefone = TextEditingController();
+  final txtEndereco = TextEditingController();
+  final txtDataNascimento = TextEditingController();
 
   bool _aceito = false;
 
