@@ -1,4 +1,4 @@
-import 'package:aula_navigator/view/login_view.dart';
+import 'package:aula_navigator/view/recuperarsenha_view.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:get_it/get_it.dart';
@@ -8,6 +8,7 @@ import 'package:aula_navigator/view/exibicao_view.dart';
 import 'package:aula_navigator/view/home_view.dart';
 import 'package:aula_navigator/view/cadastro_view.dart';
 import 'package:aula_navigator/view/login_view.dart';
+
 
 final g = GetIt.instance;
 
@@ -35,6 +36,7 @@ class MainApp extends StatelessWidget {
         'cadastro': (context) => const CadastroView(),
         'exibicao': (context) => const ExibicaoView(),
         'login': (context) => const LoginView(),
+        'recuperar_senha' : (context) => const SenhaView(),
       },
      
     );

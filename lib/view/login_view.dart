@@ -1,6 +1,7 @@
 //stf + tab
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter/gestures.dart';
 
 import '../controller/cadastro_controller.dart';
 
@@ -33,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
               TextField(
                 controller: ctrl.txtNome,
                 decoration: InputDecoration(
-                  labelText: 'Nome',
+                  labelText: 'Nome de Usuário ou E-mail',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -41,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
               TextField(
                 controller: ctrl.txtEmail,
                 decoration: InputDecoration(
-                  labelText: 'E-mail',
+                  labelText: 'Senha',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -53,12 +54,87 @@ class _LoginViewState extends State<LoginView> {
                   ctrl.atualizarAceito(value);
                 },
               ),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: 'Esqueci minha senha',
+                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Ação ao clicar no texto "Esqueci minha senha"
+                      Navigator.pushNamed(context, 'recuperar_senha');
+                    },
+                ),
+              ),
+              SizedBox(height: 15),
+              RichText(
+                text: TextSpan(
+                  text: 'Não tem uma conta? ',
+                  style: TextStyle(color: Colors.black),
+                  children: [
+                    TextSpan(
+                      text: 'Cadastre-se agora',
+                      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, 'cadastro');
+                        },
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 40),
-              ElevatedButton(
+              TextButton(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.green,
+                  padding: EdgeInsets.symmetric(horizontal: 135, vertical: 18),
+                  textStyle: TextStyle(fontSize: 18),
+                ),
                 onPressed: () {
+                  // Verifica se o usuário aceitou os termos
+                  if (!ctrl.aceito) {
+                    // Exibe um alerta se os termos não foram aceitos
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Atenção!'),
+                        content: Text('Você precisa aceitar os termos do serviço.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Fecha o diálogo
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+                    return;
+                  }
+                  // Verifica se os campos estão preenchidos
+                  if (ctrl.txtNome.text.isEmpty || ctrl.txtEmail.text.isEmpty) {
+                    // Exibe um alerta se algum campo estiver vazio
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Erro'),
+                        content: Text('Todos os campos devem ser preenchidos.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Fecha o diálogo
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+                    return;
+                  }
                   Navigator.pushNamed(context, 'exibicao');
                 },
-                child: Text('salvar'),
+                child: Text('Entrar'),
               ),
             ],
           ),

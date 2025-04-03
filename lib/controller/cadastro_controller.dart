@@ -4,6 +4,8 @@ class CadastroController extends ChangeNotifier{
 
   final txtNome = TextEditingController();
   final txtEmail = TextEditingController();
+  final txtSenha = TextEditingController();
+  final txtConfirmarSenha = TextEditingController();
   final txtCpf = TextEditingController();
   final txtTelefone = TextEditingController();
   final txtEndereco = TextEditingController();
@@ -21,6 +23,12 @@ class CadastroController extends ChangeNotifier{
   void limpar(){
     txtNome.clear();
     txtEmail.clear();
+    txtSenha.clear();
+    txtConfirmarSenha.clear();
+    txtCpf.clear();
+    txtTelefone.clear();
+    txtEndereco.clear();
+    txtDataNascimento.clear();
     _aceito = false;
     notifyListeners();
   }

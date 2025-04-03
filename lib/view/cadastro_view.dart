@@ -48,6 +48,22 @@ class _CadastroViewState extends State<CadastroView> {
                 ),
                 SizedBox(height: 15),
                 TextField(
+                  controller: ctrl.txtSenha,
+                  decoration: InputDecoration(
+                    labelText: 'Senha',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 15),
+                TextField(
+                  controller: ctrl.txtConfirmarSenha,
+                  decoration: InputDecoration(
+                    labelText: 'Confirmar Senha',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 15),
+                TextField(
                   controller: ctrl.txtCpf,
                   decoration: InputDecoration(
                     labelText: 'CPF',
@@ -90,11 +106,43 @@ class _CadastroViewState extends State<CadastroView> {
                   },
                 ),
                 SizedBox(height: 40),
-                ElevatedButton(
+                TextButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.green,
+                    padding: EdgeInsets.symmetric(horizontal: 135, vertical: 18),
+                    textStyle: TextStyle(fontSize: 18),
+                  ),
                   onPressed: () {
+                    if (ctrl.txtNome.text.isEmpty ||
+                        ctrl.txtEmail.text.isEmpty ||
+                        ctrl.txtSenha.text.isEmpty ||
+                        ctrl.txtConfirmarSenha.text.isEmpty ||
+                        ctrl.txtCpf.text.isEmpty ||
+                        ctrl.txtTelefone.text.isEmpty ||
+                        ctrl.txtEndereco.text.isEmpty ||
+                        ctrl.txtDataNascimento.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Preencha todos os campos!'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                      return;
+                    }
+                    if (ctrl.aceito == false) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Aceite os termos do serviço!'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                      return;
+                    }
+                    // Aqui você pode adicionar a lógica para salvar os dados
                     Navigator.pushNamed(context, 'exibicao');
                   },
-                  child: Text('salvar'),
+                  child: Text('Salvar'),
                 ),
               ],
             ),
