@@ -132,7 +132,7 @@ class _LoginViewState extends State<LoginView> {
                     );
                     return;
                   }
-                  Navigator.pushNamed(context, 'exibicao');
+                  Navigator.pushNamed(context, 'tela_inicial');
                 },
                 child: Text('Entrar'),
               ),

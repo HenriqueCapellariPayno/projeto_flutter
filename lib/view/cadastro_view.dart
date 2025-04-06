@@ -140,7 +140,7 @@ class _CadastroViewState extends State<CadastroView> {
                       return;
                     }
                     // Aqui você pode adicionar a lógica para salvar os dados
-                    Navigator.pushNamed(context, 'exibicao');
+                    Navigator.pushNamed(context, 'tela_inicial');
                   },
                   child: Text('Salvar'),
                 ),
