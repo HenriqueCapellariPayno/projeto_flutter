@@ -16,16 +16,15 @@ class HomeView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 20.0), // Espaço entre o texto e a imagem
           child: Text(
-            'Bem-vindo(a) a Muhen!',
+            'Bem-vindo(a) ao Muhen!',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 100.0), // Espaço entre a imagem e os botões
-          child: Image.asset(
-            'assets/logo.png', // Caminho da imagem
-            width: 150, // Largura da imagem
-            height: 150, // Altura da imagem  
+          child: CircleAvatar(
+            radius: 75, // Define o raio do CircleAvatar
+            backgroundImage: AssetImage('image/logo_muhen.jpg'), // Caminho da imagem
           ),
         ),
         Padding(

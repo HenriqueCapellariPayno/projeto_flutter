@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   flutter:
+
     sdk: flutter
   device_preview: ^1.2.0
   get_it: ^8.0.3
@@ -19,3 +20,14 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/image/logo_muhen.jpg
+    - assets/image/smartphone.jpg
+    - assets/image/camiseta.jpg
+    - assets/image/livro.jpg
+    - assets/image/bola.jpg
+    - assets/image/fone.jpg
+    - assets/image/relogio.jpg
+    - assets/image/mochila.jpg
+    - assets/image/camera.jpg

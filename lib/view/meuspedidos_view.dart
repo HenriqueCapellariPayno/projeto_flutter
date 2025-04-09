@@ -7,60 +7,78 @@ class MeusPedidosView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meus Pedidos'),
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.green,
+      centerTitle: true,
+      title: Text(
+        'Meus Pedidos',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.white),
+            onPressed: () {
+              // Ação para abrir configurações
+              Navigator.pushNamed(context, 'configuracoes');
+            },
+          ),
+        ]
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: [
-          PedidoCard(
-            status: 'Pedido Recebido',
-            descricao: 'Seu pedido foi recebido e está sendo processado.',
-            icon: Icons.receipt,
-            color: Colors.blue,
-          ),
-          PedidoCard(
-            status: 'A Caminho',
-            descricao: 'Seu pedido está a caminho.',
-            icon: Icons.local_shipping,
-            color: Colors.orange,
-          ),
-          PedidoCard(
-            status: 'Entregue',
-            descricao: 'Seu pedido foi entregue com sucesso.',
-            icon: Icons.check_circle,
-            color: Colors.green,
-          ),
-        ],
+      padding: EdgeInsets.all(16.0),
+      children: [
+        PedidoCard(
+        status: 'Pedido Recebido',
+        descricao: 'Seu pedido foi recebido e está sendo processado.',
+        icon: Icons.receipt,
+        color: Colors.blue,
+        ),
+        PedidoCard(
+        status: 'A Caminho',
+        descricao: 'Seu pedido está a caminho.',
+        icon: Icons.local_shipping,
+        color: Colors.orange,
+        ),
+        PedidoCard(
+        status: 'Entregue',
+        descricao: 'Seu pedido foi entregue com sucesso.',
+        icon: Icons.check_circle,
+        color: Colors.green,
+        ),
+      ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // Define "Meus Pedidos" como selecionado
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.pushNamed(context, '/home');
-              break;
-            case 1:
-              // Já estamos na tela "Meus Pedidos"
-              break;
-            case 2:
-              Navigator.pushNamed(context, '/conta');
-              break;
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Meus Pedidos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Conta',
-          ),
-        ],
+      currentIndex: 1, // Define "Meus Pedidos" como selecionado
+      onTap: (index) {
+        switch (index) {
+        case 0:
+          Navigator.pushNamed(context, 'tela_inicial');
+          break;
+        case 1:
+          // Já estamos na tela "Meus Pedidos"
+          break;
+        case 2:
+          Navigator.pushNamed(context, 'conta');
+          break;
+        }
+      },
+      items: const [
+        BottomNavigationBarItem(
+        icon: Icon(Icons.home, color: Colors.green),
+        label: 'Início',
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.list, color: Colors.green),
+        label: 'Meus Pedidos',
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.person, color: Colors.green),
+        label: 'Conta',
+        ),
+      ],
       ),
     );
   }

@@ -1,7 +1,5 @@
 //stf + tab
-import 'package:aula_navigator/controller/recuperarsenha_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 class SenhaView extends StatefulWidget {
   const SenhaView({super.key});
@@ -11,13 +9,6 @@ class SenhaView extends StatefulWidget {
 }
 
 class _SenhaViewState extends State<SenhaView> {
-  final ctrl = GetIt.I.get<RecuperarSenhaController>();
-
-  @override
-  void initState() {
-    super.initState();
-    ctrl.addListener(() => setState(() {}));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +21,6 @@ class _SenhaViewState extends State<SenhaView> {
           child: Column(
             children: [
               TextField(
-                controller: ctrl.txtEmail,
                 decoration: InputDecoration(
                   labelText: 'E-mail ou Número de Telefone',
                   border: OutlineInputBorder(),

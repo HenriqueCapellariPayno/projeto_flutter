@@ -1,4 +1,3 @@
-//stf + tab
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,6 +12,10 @@ class CadastroView extends StatefulWidget {
 
 class _CadastroViewState extends State<CadastroView> {
   final ctrl = GetIt.I.get<CadastroController>();
+  bool _senhaVisivel = false;
+  bool _confirmarSenhaVisivel = false;
+
+  final TextEditingController nomeController = TextEditingController();
 
   @override
   void initState() {
@@ -36,6 +39,7 @@ class _CadastroViewState extends State<CadastroView> {
                   decoration: InputDecoration(
                     labelText: 'Nome',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
                   ),
                 ),
                 SizedBox(height: 15),
@@ -44,22 +48,49 @@ class _CadastroViewState extends State<CadastroView> {
                   decoration: InputDecoration(
                     labelText: 'E-mail',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.email),
                   ),
                 ),
                 SizedBox(height: 15),
                 TextField(
                   controller: ctrl.txtSenha,
+                  obscureText: !_senhaVisivel,
                   decoration: InputDecoration(
                     labelText: 'Senha',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _senhaVisivel ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _senhaVisivel = !_senhaVisivel;
+                        });
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(height: 15),
                 TextField(
                   controller: ctrl.txtConfirmarSenha,
+                  obscureText: !_confirmarSenhaVisivel,
                   decoration: InputDecoration(
                     labelText: 'Confirmar Senha',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock_outline),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _confirmarSenhaVisivel
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _confirmarSenhaVisivel = !_confirmarSenhaVisivel;
+                        });
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(height: 15),
@@ -68,6 +99,7 @@ class _CadastroViewState extends State<CadastroView> {
                   decoration: InputDecoration(
                     labelText: 'CPF',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.badge),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -77,6 +109,7 @@ class _CadastroViewState extends State<CadastroView> {
                   decoration: InputDecoration(
                     labelText: 'Telefone',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.phone),
                   ),
                   keyboardType: TextInputType.phone,
                 ),
@@ -86,6 +119,7 @@ class _CadastroViewState extends State<CadastroView> {
                   decoration: InputDecoration(
                     labelText: 'Endereço',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.home),
                   ),
                 ),
                 SizedBox(height: 15),
@@ -94,6 +128,7 @@ class _CadastroViewState extends State<CadastroView> {
                   decoration: InputDecoration(
                     labelText: 'Data de Nascimento',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.calendar_today),
                   ),
                   keyboardType: TextInputType.datetime,
                 ),
@@ -139,10 +174,10 @@ class _CadastroViewState extends State<CadastroView> {
                       );
                       return;
                     }
-                    // Aqui você pode adicionar a lógica para salvar os dados
+
                     Navigator.pushNamed(context, 'tela_inicial');
                   },
-                  child: Text('Salvar'),
+                  child: Text('Entrar'),
                 ),
               ],
             ),

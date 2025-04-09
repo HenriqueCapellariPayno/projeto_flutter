@@ -1,4 +1,3 @@
-//stf + tab
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter/gestures.dart';
@@ -14,6 +13,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final ctrl = GetIt.I.get<CadastroController>();
+  bool _obscurePassword = true;
 
   @override
   void initState() {
@@ -36,14 +36,27 @@ class _LoginViewState extends State<LoginView> {
                 decoration: InputDecoration(
                   labelText: 'Nome de Usuário ou E-mail',
                   border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
                 ),
               ),
               SizedBox(height: 15),
               TextField(
                 controller: ctrl.txtEmail,
+                obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Senha',
                   border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
                 ),
               ),
               SizedBox(height: 15),
@@ -61,7 +74,6 @@ class _LoginViewState extends State<LoginView> {
                   style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      // Ação ao clicar no texto "Esqueci minha senha"
                       Navigator.pushNamed(context, 'recuperar_senha');
                     },
                 ),
@@ -92,9 +104,7 @@ class _LoginViewState extends State<LoginView> {
                   textStyle: TextStyle(fontSize: 18),
                 ),
                 onPressed: () {
-                  // Verifica se o usuário aceitou os termos
                   if (!ctrl.aceito) {
-                    // Exibe um alerta se os termos não foram aceitos
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -103,7 +113,7 @@ class _LoginViewState extends State<LoginView> {
                         actions: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop(); // Fecha o diálogo
+                              Navigator.of(context).pop();
                             },
                             child: Text('OK'),
                           ),
@@ -112,9 +122,7 @@ class _LoginViewState extends State<LoginView> {
                     );
                     return;
                   }
-                  // Verifica se os campos estão preenchidos
                   if (ctrl.txtNome.text.isEmpty || ctrl.txtEmail.text.isEmpty) {
-                    // Exibe um alerta se algum campo estiver vazio
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
@@ -123,7 +131,7 @@ class _LoginViewState extends State<LoginView> {
                         actions: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pop(); // Fecha o diálogo
+                              Navigator.of(context).pop();
                             },
                             child: Text('OK'),
                           ),
